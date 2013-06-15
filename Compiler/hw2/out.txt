@@ -1,1 +1,1 @@
-int ID ( void ) { int ID ; float ID ; ID = ID + INT_NUM ; if ( ID == INT_NUM ) { ID = FLOAT_NUM ; } else { ID = INT_NUM ; } return INT_NUM ; } $
+int ID ( int ID ) { int ID ; return INT_NUM ; } $

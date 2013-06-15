@@ -132,7 +132,7 @@ int main( int argc , char *argv[] )
     
     if( argc != 3 )
     {
-        input = fopen("grammar2.txt","r");
+        input = fopen("grammar.txt","r");
         scan = fopen("out.txt","r");
     }
     else
@@ -144,7 +144,6 @@ int main( int argc , char *argv[] )
     if ( input == NULL || scan == NULL )
     {
         printf("input file error!\n");
-        system("pause");
         return 0;     
     }
     
@@ -246,7 +245,6 @@ int main( int argc , char *argv[] )
     free_token(&follow_set_start);
     free_grammar();
     
-    system("pause");
 }
 
 int insert_grammar( int rule , char *lhs , char *rhs )
@@ -1035,7 +1033,7 @@ void lldiver()
             pop_stack(1);
             treenode = stack_top->index;
             for( i=0 ; i<treenode ; printf(" ") , i++ );
-            printf("%Match grammar %s\n", idtostr(stack_top->symbol) );
+            printf("Match grammar %s\n", idtostr(stack_top->symbol) );
             treenode++;
         }
         else // syntax error
