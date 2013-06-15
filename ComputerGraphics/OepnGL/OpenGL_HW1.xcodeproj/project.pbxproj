@@ -1,0 +1,322 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1310CFC6136FDDA000312683 /* Robot.c in Sources */ = {isa = PBXBuildFile; fileRef = 1310CFC5136FDDA000312683 /* Robot.c */; };
+		132D75F9134463E900CE6637 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 132D75F8134463E900CE6637 /* OpenGL.framework */; };
+		132D75FD134463F900CE6637 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 132D75FC134463F900CE6637 /* GLUT.framework */; };
+		132D76EA1344B3D000CE6637 /* Model.c in Sources */ = {isa = PBXBuildFile; fileRef = 132D76E91344B3D000CE6637 /* Model.c */; };
+		13464BA3176CE178002ACA9C /* Armadillo3K.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 13464B8D176CE16B002ACA9C /* Armadillo3K.txt */; };
+		13464BA4176CE178002ACA9C /* Armadillo3KN.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 13464B8E176CE16B002ACA9C /* Armadillo3KN.txt */; };
+		13464BA5176CE178002ACA9C /* bunny.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 13464B8F176CE16B002ACA9C /* bunny.txt */; };
+		13464BA6176CE178002ACA9C /* bunnyC.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 13464B90176CE16B002ACA9C /* bunnyC.txt */; };
+		13464BA7176CE178002ACA9C /* bunnyN.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 13464B91176CE16B002ACA9C /* bunnyN.txt */; };
+		13464BA8176CE178002ACA9C /* cube.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 13464B92176CE16B002ACA9C /* cube.txt */; };
+		13464BA9176CE178002ACA9C /* dolphin.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 13464B93176CE16B002ACA9C /* dolphin.txt */; };
+		13464BAA176CE178002ACA9C /* dragon.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 13464B94176CE16B002ACA9C /* dragon.txt */; };
+		13464BAB176CE178002ACA9C /* dragonC.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 13464B95176CE16B002ACA9C /* dragonC.txt */; };
+		13464BAC176CE178002ACA9C /* dragonN.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 13464B96176CE16B002ACA9C /* dragonN.txt */; };
+		13464BAD176CE178002ACA9C /* frog2KC.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 13464B97176CE16B002ACA9C /* frog2KC.txt */; };
+		13464BAE176CE178002ACA9C /* happy5K.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 13464B98176CE16B002ACA9C /* happy5K.txt */; };
+		13464BAF176CE178002ACA9C /* happy5KC.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 13464B99176CE16B002ACA9C /* happy5KC.txt */; };
+		13464BB0176CE178002ACA9C /* happy5KN.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 13464B9A176CE16B002ACA9C /* happy5KN.txt */; };
+		13464BB1176CE178002ACA9C /* horse1K.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 13464B9B176CE16B002ACA9C /* horse1K.txt */; };
+		13464BB2176CE178002ACA9C /* horse1KC.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 13464B9C176CE16B002ACA9C /* horse1KC.txt */; };
+		13464BB3176CE178002ACA9C /* horse1KN.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 13464B9D176CE16B002ACA9C /* horse1KN.txt */; };
+		13464BB4176CE178002ACA9C /* NalaN.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 13464B9E176CE16B002ACA9C /* NalaN.txt */; };
+		13464BB5176CE178002ACA9C /* sphere.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 13464B9F176CE16B002ACA9C /* sphere.txt */; };
+		13464BB6176CE178002ACA9C /* teapot.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 13464BA0176CE16B002ACA9C /* teapot.txt */; };
+		13464BB7176CE178002ACA9C /* tiger.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 13464BA1176CE16B002ACA9C /* tiger.txt */; };
+		13464BB8176CE178002ACA9C /* toruses.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 13464BA2176CE16B002ACA9C /* toruses.txt */; };
+		8DD76FAC0486AB0100D96B5E /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* main.c */; settings = {ATTRIBUTES = (); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8DD76FAF0486AB0100D96B5E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = Models;
+			dstSubfolderSpec = 16;
+			files = (
+				13464BA3176CE178002ACA9C /* Armadillo3K.txt in CopyFiles */,
+				13464BA4176CE178002ACA9C /* Armadillo3KN.txt in CopyFiles */,
+				13464BA5176CE178002ACA9C /* bunny.txt in CopyFiles */,
+				13464BA6176CE178002ACA9C /* bunnyC.txt in CopyFiles */,
+				13464BA7176CE178002ACA9C /* bunnyN.txt in CopyFiles */,
+				13464BA8176CE178002ACA9C /* cube.txt in CopyFiles */,
+				13464BA9176CE178002ACA9C /* dolphin.txt in CopyFiles */,
+				13464BAA176CE178002ACA9C /* dragon.txt in CopyFiles */,
+				13464BAB176CE178002ACA9C /* dragonC.txt in CopyFiles */,
+				13464BAC176CE178002ACA9C /* dragonN.txt in CopyFiles */,
+				13464BAD176CE178002ACA9C /* frog2KC.txt in CopyFiles */,
+				13464BAE176CE178002ACA9C /* happy5K.txt in CopyFiles */,
+				13464BAF176CE178002ACA9C /* happy5KC.txt in CopyFiles */,
+				13464BB0176CE178002ACA9C /* happy5KN.txt in CopyFiles */,
+				13464BB1176CE178002ACA9C /* horse1K.txt in CopyFiles */,
+				13464BB2176CE178002ACA9C /* horse1KC.txt in CopyFiles */,
+				13464BB3176CE178002ACA9C /* horse1KN.txt in CopyFiles */,
+				13464BB4176CE178002ACA9C /* NalaN.txt in CopyFiles */,
+				13464BB5176CE178002ACA9C /* sphere.txt in CopyFiles */,
+				13464BB6176CE178002ACA9C /* teapot.txt in CopyFiles */,
+				13464BB7176CE178002ACA9C /* tiger.txt in CopyFiles */,
+				13464BB8176CE178002ACA9C /* toruses.txt in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		08FB7796FE84155DC02AAC07 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		1310CFC5136FDDA000312683 /* Robot.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Robot.c; sourceTree = "<group>"; };
+		132D75F8134463E900CE6637 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		132D75FC134463F900CE6637 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		132D76C71344A6CF00CE6637 /* graph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graph.h; sourceTree = "<group>"; };
+		132D76E91344B3D000CE6637 /* Model.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Model.c; sourceTree = "<group>"; };
+		13464B8D176CE16B002ACA9C /* Armadillo3K.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Armadillo3K.txt; sourceTree = "<group>"; };
+		13464B8E176CE16B002ACA9C /* Armadillo3KN.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Armadillo3KN.txt; sourceTree = "<group>"; };
+		13464B8F176CE16B002ACA9C /* bunny.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bunny.txt; sourceTree = "<group>"; };
+		13464B90176CE16B002ACA9C /* bunnyC.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bunnyC.txt; sourceTree = "<group>"; };
+		13464B91176CE16B002ACA9C /* bunnyN.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bunnyN.txt; sourceTree = "<group>"; };
+		13464B92176CE16B002ACA9C /* cube.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.txt; sourceTree = "<group>"; };
+		13464B93176CE16B002ACA9C /* dolphin.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dolphin.txt; sourceTree = "<group>"; };
+		13464B94176CE16B002ACA9C /* dragon.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dragon.txt; sourceTree = "<group>"; };
+		13464B95176CE16B002ACA9C /* dragonC.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dragonC.txt; sourceTree = "<group>"; };
+		13464B96176CE16B002ACA9C /* dragonN.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dragonN.txt; sourceTree = "<group>"; };
+		13464B97176CE16B002ACA9C /* frog2KC.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = frog2KC.txt; sourceTree = "<group>"; };
+		13464B98176CE16B002ACA9C /* happy5K.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = happy5K.txt; sourceTree = "<group>"; };
+		13464B99176CE16B002ACA9C /* happy5KC.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = happy5KC.txt; sourceTree = "<group>"; };
+		13464B9A176CE16B002ACA9C /* happy5KN.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = happy5KN.txt; sourceTree = "<group>"; };
+		13464B9B176CE16B002ACA9C /* horse1K.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = horse1K.txt; sourceTree = "<group>"; };
+		13464B9C176CE16B002ACA9C /* horse1KC.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = horse1KC.txt; sourceTree = "<group>"; };
+		13464B9D176CE16B002ACA9C /* horse1KN.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = horse1KN.txt; sourceTree = "<group>"; };
+		13464B9E176CE16B002ACA9C /* NalaN.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NalaN.txt; sourceTree = "<group>"; };
+		13464B9F176CE16B002ACA9C /* sphere.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sphere.txt; sourceTree = "<group>"; };
+		13464BA0176CE16B002ACA9C /* teapot.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = teapot.txt; sourceTree = "<group>"; };
+		13464BA1176CE16B002ACA9C /* tiger.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tiger.txt; sourceTree = "<group>"; };
+		13464BA2176CE16B002ACA9C /* toruses.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = toruses.txt; sourceTree = "<group>"; };
+		8DD76FB20486AB0100D96B5E /* OpenGL_HW1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OpenGL_HW1; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6A0FF2C0290799A04C91782 /* OpenGL_HW1.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = OpenGL_HW1.1; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8DD76FAD0486AB0100D96B5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				132D75F9134463E900CE6637 /* OpenGL.framework in Frameworks */,
+				132D75FD134463F900CE6637 /* GLUT.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08FB7794FE84155DC02AAC07 /* OpenGL_HW1 */ = {
+			isa = PBXGroup;
+			children = (
+				08FB7795FE84155DC02AAC07 /* Source */,
+				C6A0FF2B0290797F04C91782 /* Documentation */,
+				1AB674ADFE9D54B511CA2CBB /* Products */,
+			);
+			name = OpenGL_HW1;
+			sourceTree = "<group>";
+		};
+		08FB7795FE84155DC02AAC07 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				13464B8C176CE16B002ACA9C /* Models */,
+				1310CFC5136FDDA000312683 /* Robot.c */,
+				132D76C71344A6CF00CE6637 /* graph.h */,
+				132D76E91344B3D000CE6637 /* Model.c */,
+				08FB7796FE84155DC02AAC07 /* main.c */,
+				132D75F8134463E900CE6637 /* OpenGL.framework */,
+				132D75FC134463F900CE6637 /* GLUT.framework */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		13464B8C176CE16B002ACA9C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				13464B8D176CE16B002ACA9C /* Armadillo3K.txt */,
+				13464B8E176CE16B002ACA9C /* Armadillo3KN.txt */,
+				13464B8F176CE16B002ACA9C /* bunny.txt */,
+				13464B90176CE16B002ACA9C /* bunnyC.txt */,
+				13464B91176CE16B002ACA9C /* bunnyN.txt */,
+				13464B92176CE16B002ACA9C /* cube.txt */,
+				13464B93176CE16B002ACA9C /* dolphin.txt */,
+				13464B94176CE16B002ACA9C /* dragon.txt */,
+				13464B95176CE16B002ACA9C /* dragonC.txt */,
+				13464B96176CE16B002ACA9C /* dragonN.txt */,
+				13464B97176CE16B002ACA9C /* frog2KC.txt */,
+				13464B98176CE16B002ACA9C /* happy5K.txt */,
+				13464B99176CE16B002ACA9C /* happy5KC.txt */,
+				13464B9A176CE16B002ACA9C /* happy5KN.txt */,
+				13464B9B176CE16B002ACA9C /* horse1K.txt */,
+				13464B9C176CE16B002ACA9C /* horse1KC.txt */,
+				13464B9D176CE16B002ACA9C /* horse1KN.txt */,
+				13464B9E176CE16B002ACA9C /* NalaN.txt */,
+				13464B9F176CE16B002ACA9C /* sphere.txt */,
+				13464BA0176CE16B002ACA9C /* teapot.txt */,
+				13464BA1176CE16B002ACA9C /* tiger.txt */,
+				13464BA2176CE16B002ACA9C /* toruses.txt */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1AB674ADFE9D54B511CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DD76FB20486AB0100D96B5E /* OpenGL_HW1 */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C6A0FF2B0290797F04C91782 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				C6A0FF2C0290799A04C91782 /* OpenGL_HW1.1 */,
+			);
+			name = Documentation;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8DD76FA90486AB0100D96B5E /* OpenGL_HW1 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB928508733DD80010E9CD /* Build configuration list for PBXNativeTarget "OpenGL_HW1" */;
+			buildPhases = (
+				8DD76FAB0486AB0100D96B5E /* Sources */,
+				8DD76FAD0486AB0100D96B5E /* Frameworks */,
+				8DD76FAF0486AB0100D96B5E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OpenGL_HW1;
+			productInstallPath = "$(HOME)/bin";
+			productName = OpenGL_HW1;
+			productReference = 8DD76FB20486AB0100D96B5E /* OpenGL_HW1 */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+			};
+			buildConfigurationList = 1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "OpenGL_HW1" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 08FB7794FE84155DC02AAC07 /* OpenGL_HW1 */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8DD76FA90486AB0100D96B5E /* OpenGL_HW1 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8DD76FAB0486AB0100D96B5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DD76FAC0486AB0100D96B5E /* main.c in Sources */,
+				132D76EA1344B3D000CE6637 /* Model.c in Sources */,
+				1310CFC6136FDDA000312683 /* Robot.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB928608733DD80010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = OpenGL_HW1;
+			};
+			name = Debug;
+		};
+		1DEB928708733DD80010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = OpenGL_HW1;
+			};
+			name = Release;
+		};
+		1DEB928A08733DD80010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		1DEB928B08733DD80010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB928508733DD80010E9CD /* Build configuration list for PBXNativeTarget "OpenGL_HW1" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB928608733DD80010E9CD /* Debug */,
+				1DEB928708733DD80010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "OpenGL_HW1" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB928A08733DD80010E9CD /* Debug */,
+				1DEB928B08733DD80010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}
