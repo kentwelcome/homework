@@ -61,7 +61,7 @@ TOKEN *predict_set_start , *predict_set_end;
 PARSER **parser_table;
 STACK *stack_top;
 SET *scan_start , *scan_end;
-char lambda[1];
+char lambda[2];
 int is_lambda;
 int num_of_nonterm , num_of_term;
 int iterm_index;
@@ -115,7 +115,7 @@ int main( int argc , char *argv[] )
     int i , j;
     int rule_num; 
 
-    lambda[0] = 'f';
+    strcpy(lambda,"位");
     G_start = NULL;
     G_end = NULL;
     terminal_start = NULL;
@@ -273,7 +273,7 @@ int insert_grammar( int rule , char *lhs , char *rhs )
         sscanf( c_ptr , "%s" , string );
         insert_token( &token_start , &token_end , string );
         
-        if ( search_token( terminal_start , string ) == NULL && strcmp( string , "f" ) != 0 ) //  is not terminal
+        if ( search_token( terminal_start , string ) == NULL && strcmp( string , "位" ) != 0 ) // 位 is not terminal
         {
             insert_token( &terminal_start , &terminal_end , string );    // make terminal table
         }
@@ -426,10 +426,10 @@ void fill_frist_set(void)
     for ( G_ptr = G_start ; G_ptr != NULL ; G_ptr = G_ptr->next )
     {
         //printf("%s\n",gram->rhs);
-        if ( strcmp( G_ptr->rhs_string->string , "f" ) == 0 )
+        if ( strcmp( G_ptr->rhs_string->string , "位" ) == 0 )
         {
             ptr = search_token( first_set_start , G_ptr->lhs );
-            insert_set( ptr , "f" ); // add into first set
+            insert_set( ptr , "位" ); // add 位 into first set
         }
     }
     
@@ -479,10 +479,10 @@ int comput_first( TOKEN *alpha , TOKEN *dst , char *dst_name )
         return FALSE;
     }
     
-    if ( strcmp( alpha->string , "f" ) == 0 )
+    if ( strcmp( alpha->string , "位" ) == 0 )
     {
         ptr = search_token( dst , dst_name );
-        if ( insert_set( ptr , "f" ) == TRUE )
+        if ( insert_set( ptr , "位" ) == TRUE )
             change = TRUE;
     }
     else
@@ -491,7 +491,7 @@ int comput_first( TOKEN *alpha , TOKEN *dst , char *dst_name )
         ptr2 = search_token( first_set_start , alpha->string );
         
         add_set( tmp , ptr2 );
-        delete_set( &(tmp->set) , "f" );
+        delete_set( &(tmp->set) , "位" );
         
         if ( add_set( ptr , tmp ) == TRUE ) 
             change = TRUE;
@@ -500,17 +500,17 @@ int comput_first( TOKEN *alpha , TOKEN *dst , char *dst_name )
         for( ptr3 = alpha ; ptr3 != NULL  ; ptr3 = ptr3->next )
         {
             ptr2 = search_token( first_set_start , ptr3->string );
-            if( search_set( ptr2 , "f" ) != TRUE )
+            if( search_set( ptr2 , "位" ) != TRUE )
                 break;
 
             if ( ptr3->next == NULL )
             {
                 ptr_end = ptr3;
                 ptr3 = search_token( first_set_start , ptr_end->string );
-                if( search_set( ptr3 , "f" ) == TRUE )
+                if( search_set( ptr3 , "位" ) == TRUE )
                 {
                     is_lambda = TRUE;
-                    if ( insert_set( ptr , "f" ) == TRUE )
+                    if ( insert_set( ptr , "位" ) == TRUE )
                         change = TRUE;
                 }
                 break;
@@ -518,12 +518,12 @@ int comput_first( TOKEN *alpha , TOKEN *dst , char *dst_name )
                 
             ptr2 = search_token( first_set_start , ptr3->next->string );
             add_set( tmp , ptr2 );
-            delete_set( &(tmp->set) , "f" );
+            delete_set( &(tmp->set) , "位" );
             
             
             if ( add_set( ptr , tmp ) == TRUE )
             {
-                delete_set( &(ptr->set) , "f" );
+                delete_set( &(ptr->set) , "位" );
                 change = TRUE;
             }
             free_set( &(tmp->set) );
@@ -554,10 +554,10 @@ int comput_first_f( TOKEN *alpha , TOKEN *dst , char *dst_name )
         return FALSE;
     }
     
-    if ( strcmp( alpha->string , "f" ) == 0 )
+    if ( strcmp( alpha->string , "位" ) == 0 )
     {
         //ptr = search_token( dst , dst_name );
-        //if ( insert_set( ptr , "f" ) == TRUE )
+        //if ( insert_set( ptr , "位" ) == TRUE )
         is_lambda = TRUE;
         change = TRUE;
     }
@@ -567,7 +567,7 @@ int comput_first_f( TOKEN *alpha , TOKEN *dst , char *dst_name )
         ptr2 = search_token( first_set_start , alpha->string );
         
         add_set( tmp , ptr2 );
-        delete_set( &(tmp->set) , "f" );
+        delete_set( &(tmp->set) , "位" );
         if ( add_set( ptr , tmp ) == TRUE ) 
             change = TRUE;
         free_set( &(tmp->set) );
@@ -575,16 +575,16 @@ int comput_first_f( TOKEN *alpha , TOKEN *dst , char *dst_name )
         for( ptr3 = alpha ; ptr3 != NULL  ; ptr3 = ptr3->next )
         {
             ptr2 = search_token( first_set_start , ptr3->string );
-            if( search_set( ptr2 , "f" ) != TRUE )
+            if( search_set( ptr2 , "位" ) != TRUE )
                 break;
             
             if ( ptr3->next == NULL )
             {
                 ptr_end = ptr3;
                 ptr3 = search_token( first_set_start , ptr_end->string );
-                if( search_set( ptr3 , "f" ) == TRUE )
+                if( search_set( ptr3 , "位" ) == TRUE )
                 {
-                    if ( insert_set( ptr , "f" ) == TRUE )
+                    if ( insert_set( ptr , "位" ) == TRUE )
                     {
                         is_lambda = TRUE;
                         change = TRUE;
@@ -595,10 +595,10 @@ int comput_first_f( TOKEN *alpha , TOKEN *dst , char *dst_name )
 
             ptr2 = search_token( first_set_start , ptr3->next->string );
             add_set( tmp , ptr2 );
-            delete_set( &(tmp->set) , "f" );
+            delete_set( &(tmp->set) , "位" );
             if ( add_set( ptr , tmp ) == TRUE )
             {
-                delete_set( &(ptr->set) , "f" );
+                delete_set( &(ptr->set) , "位" );
                 change = TRUE;
             }
             free_set( &(tmp->set) );
@@ -623,7 +623,7 @@ void fill_follow_set(void)
 
     // set start symbol 
     ptr = follow_set_start;
-    insert_set( ptr , "f" );
+    insert_set( ptr , "位" );
     
     do {
         change = FALSE;
@@ -633,11 +633,11 @@ void fill_follow_set(void)
             {
                 if( search_token( nonterminal_start , nonterm->string ) == NULL )
                     continue;
-                // follow[B] = follow[B] U (comput_first() - )
+                // follow[B] = follow[B] U (comput_first(尾) - 位)
                 if ( comput_first_f( nonterm->next , follow_set_start , nonterm->string ) == TRUE )
                    change = TRUE;
                 
-                // if (  in comput_first() then follow[B] = follow[B] U follow[A])
+                // if ( 位 in comput_first(尾) then follow[B] = follow[B] U follow[A])
                 if( is_lambda == TRUE )
                 {
                     ptr = search_token( follow_set_start , G_ptr->lhs );
@@ -676,10 +676,10 @@ void fill_predict_set(void)
              {
                  continue;
              }
-             else if ( search_set( first , "f" ) == TRUE )
+             else if ( search_set( first , "位" ) == TRUE )
              {
                  add_set( predict , first );
-                 delete_set( &(predict->set) , "f" );
+                 delete_set( &(predict->set) , "位" );
                  continue;
              } 
              else
@@ -761,7 +761,7 @@ int add_set( TOKEN *dst , TOKEN *src )
     
     for ( ptr = src->set ; ptr != NULL ; ptr = ptr->next )
     {
-        //if( strcmp( ptr->string , "f" ) == 0 )
+        //if( strcmp( ptr->string , "位" ) == 0 )
         //    continue;
         if ( insert_set( dst , ptr->string ) == TRUE ) 
            change = TRUE;
@@ -890,7 +890,7 @@ void output_perdict_table()
             if( strcmp( G_ptr->lhs , nonterm->string ) != 0 )
                 continue;
     
-            if ( is_in_set( G_ptr->set , "f" ) == TRUE )
+            if ( is_in_set( G_ptr->set , "位" ) == TRUE )
             {
                  fprintf( csv , " %d" , G_ptr->rule );
                  
@@ -1020,7 +1020,7 @@ void lldiver()
             else
                 printf("Match token %s\n" , idtostr(stack_top->symbol) );
             
-            if( stack_top->symbol != make_id("f") )
+            if( stack_top->symbol != make_id("位") )
                 scan_ptr = scan_ptr->next;
                 
             if( scan_ptr->string[0] != '$' )
@@ -1028,7 +1028,7 @@ void lldiver()
             
             
         }
-        else if( stack_top->symbol == make_id("f") ) // eat lambda
+        else if( stack_top->symbol == make_id("位") ) // eat lambda
         {
             pop_stack(1);
             treenode = stack_top->index;
@@ -1128,7 +1128,7 @@ int make_id( char *string )
          if( strcmp( S_ptr->string , string ) == 0 )
              return id;
     }
-    if( strcmp(string , "f") == 0 )
+    if( strcmp(string , "位") == 0 )
         return id;
 }
 

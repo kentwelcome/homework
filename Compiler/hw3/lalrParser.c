@@ -75,7 +75,7 @@ TOKEN *follow_set_start , *follow_set_end;
 TOKEN *predict_set_start , *predict_set_end;
 PARSER **parser_table;
 SET *scan_start , *scan_end;
-char lambda[1];
+char lambda[2];
 int is_lambda;
 int num_of_nonterm , num_of_term;
 int iterm_index;
@@ -87,7 +87,7 @@ STACK *stack_top;
 
 // scanner
 int     COMMENT_MARK = FALSE;
-char	*Reserved_word[] = { "void" , "int" , "float" , "if" , "else" , "while" , "for" , "return" ,"break" };
+char    *Reserved_word[] = { "void" , "int" , "float" , "if" , "else" , "while" , "for" , "return" ,"break" };
 int Check_Reserved_Word(char *string );
 int scanner( char *file_name );
 
@@ -143,7 +143,7 @@ int main( int argc , char *argv[] )
     int i , j;
     int rule_num; 
 
-    lambda[0] = 'f';
+    strcpy(lambda,"Î»");
     G_start = NULL;
     G_end = NULL;
     terminal_start = NULL;
@@ -369,7 +369,7 @@ int insert_grammar( int rule , char *lhs , char *rhs )
         sscanf( c_ptr , "%s" , string );
         insert_token( &token_start , &token_end , string );
         
-        if ( search_token( terminal_start , string ) == NULL && strcmp( string , "f" ) != 0 ) // £f is not terminal
+        if ( search_token( terminal_start , string ) == NULL && strcmp( string , "Î»" ) != 0 ) // Î» is not terminal
         {
             insert_token( &terminal_start , &terminal_end , string );    // make terminal table
             
@@ -572,7 +572,7 @@ void fill_frist_set(void)
         if ( strcmp( G_ptr->rhs_string->string , "f" ) == 0 )
         {
             ptr = search_token( first_set_start , G_ptr->lhs );
-            insert_set( ptr , "f" ); // add £finto first set
+            insert_set( ptr , "f" ); // add Î»into first set
         }
     }
     
@@ -776,11 +776,11 @@ void fill_follow_set(void)
             {
                 if( search_token( nonterminal_start , nonterm->string ) == NULL )
                     continue;
-                // follow[B] = follow[B] U (comput_first(£]) - £f)
+                // follow[B] = follow[B] U (comput_first(Î²) - Î»)
                 if ( comput_first_f( nonterm->next , follow_set_start , nonterm->string ) == TRUE )
                    change = TRUE;
                 
-                // if ( £f in comput_first(£]) then follow[B] = follow[B] U follow[A])
+                // if ( Î» in comput_first(Î²) then follow[B] = follow[B] U follow[A])
                 if( is_lambda == TRUE )
                 {
                     ptr = search_token( follow_set_start , G_ptr->lhs );
@@ -1218,8 +1218,6 @@ void build_CFSM()
         config_ptr = config_ptr->set_next;
     }
     
-
-     
 }
 
 Config_set *go_to0( Config_set *Set , TOKEN *X )
@@ -1234,7 +1232,7 @@ Config_set *go_to0( Config_set *Set , TOKEN *X )
         if( ptr->dot == NULL )
             if( X == NULL )
             {
-                // add A -> £]X¡E£^ to new_set
+                // add A -> Î²Xâ€¢Î³ to new_set
                 if ( new_set == NULL )
                 {
                     new_set = create_config_set( ptr->rule , ptr->dot->next );
@@ -1251,7 +1249,7 @@ Config_set *go_to0( Config_set *Set , TOKEN *X )
             
         if ( strcmp( ptr->dot->string , X->string ) == 0 )
         {
-            // add A -> £]X¡E£^ to new_set
+            // add A -> Î²Xâ€¢Î³ to new_set
             if ( new_set == NULL )
             {
                 new_set = create_config_set( ptr->rule , ptr->dot->next );
@@ -1353,7 +1351,7 @@ int propagate( int state , Config_set *A , Config_set *B )
     L2 = B->lookahead;
     
     
-    //First(£^L)
+    //First(Î³L)
     for( T_ptr = dot->next ; T_ptr != NULL ; T_ptr = T_ptr->next )
     {
         first = search_token( first_set_start , T_ptr->string );
@@ -1372,7 +1370,7 @@ int propagate( int state , Config_set *A , Config_set *B )
             break;
         }
     }
-    //First(£^L) ,  £^ is lambda
+    //First(Î³L) ,  Î³ is lambda
     if(T_ptr == NULL)
     {
         add_set( L2 , L1 );         
@@ -1521,7 +1519,7 @@ void view_config_set( Config_set *set )
         for( t_ptr = ptr->rule->rhs_string ; t_ptr != NULL ; t_ptr = t_ptr->next )
         {
             if( ptr->dot == t_ptr )
-                printf("¡E");
+                printf("â€¢");
             printf(" %s",t_ptr->string);
         }
         printf("\n");
@@ -1609,15 +1607,15 @@ void view_state( int statenum )
             for( config_ptr = ptr->config_set ; config_ptr != NULL ; config_ptr = config_ptr->set_next )
             {
                 //config_ptr = ptr->config_set ;   
-                fprintf(view,"%s ¡÷", config_ptr->rule->lhs );
+                fprintf(view,"%s â†’", config_ptr->rule->lhs );
                 for( t_ptr = config_ptr->rule->rhs_string ; t_ptr != NULL ; t_ptr = t_ptr->next )
                 {
                     if( config_ptr->dot == t_ptr )
-                        fprintf(view,"¡E");
+                        fprintf(view,"â€¢");
                     fprintf(view," %s",t_ptr->string);
                 }
                 if( config_ptr->dot == NULL )
-                    fprintf(view,"¡E");
+                    fprintf(view,"â€¢");
                 
                 fprintf(view,"  { ");
                 for( S_ptr = config_ptr->lookahead->set ; S_ptr != NULL ; S_ptr = S_ptr->next )
@@ -1824,220 +1822,220 @@ int pop_stack( int pop_num )
 // scanner
 int scanner( char *file_name )
 {
-	FILE    *input_file , *output_file;
-	char    *read_word;
-	char    *Ptr;
-	char	id_tmp[32];
-	int     i = 1;
-	int     line = 1;
+    FILE    *input_file , *output_file;
+    char    *read_word;
+    char    *Ptr;
+    char    id_tmp[32];
+    int     i = 1;
+    int     line = 1;
 
 
-	if ( !(input_file=fopen(file_name,"r")) )
-	{
-		fprintf(stderr,"source code input file error!\n");
-		system("system");
-		return -1;
-	}
-	
-	output_file = fopen("out.txt","w");
-	read_word = (char*) malloc(sizeof(char)*256);
+    if ( !(input_file=fopen(file_name,"r")) )
+    {
+        fprintf(stderr,"source code input file error!\n");
+        system("system");
+        return -1;
+    }
+    
+    output_file = fopen("out.txt","w");
+    read_word = (char*) malloc(sizeof(char)*256);
 
 
-	while ( fgets(read_word,256,input_file) ) // read from stdin or input file by line
-	{
+    while ( fgets(read_word,256,input_file) ) // read from stdin or input file by line
+    {
 
-		if(read_word[0] == '\n')            // change \n to \0
-			read_word[0] = '\0';
-		strtok(read_word,"\n"); 
+        if(read_word[0] == '\n')            // change \n to \0
+            read_word[0] = '\0';
+        strtok(read_word,"\n"); 
 
-		Ptr = read_word;
+        Ptr = read_word;
 
-		// start scann new line
-		while( *Ptr != '\0' && *Ptr != '#' )
-		{
+        // start scann new line
+        while( *Ptr != '\0' && *Ptr != '#' )
+        {
 
-			if (isspace(*Ptr) || COMMENT_MARK == TRUE)	// get space
-			{
-				if(*Ptr == '*' && *(Ptr+1) == '/')
-				{
-					Ptr+=2;
-					COMMENT_MARK = FALSE;
-					continue;
-				}
+            if (isspace(*Ptr) || COMMENT_MARK == TRUE)  // get space
+            {
+                if(*Ptr == '*' && *(Ptr+1) == '/')
+                {
+                    Ptr+=2;
+                    COMMENT_MARK = FALSE;
+                    continue;
+                }
 
-				Ptr++;
-				continue;
-			}
-			else if (isalpha(*Ptr)) // check ID
-			{
-				//Ptr++
-				for( i = 0 ; isalnum(*(Ptr)) || *(Ptr) == '_' ; Ptr++ , i++ )
-					id_tmp[i] = *Ptr;
+                Ptr++;
+                continue;
+            }
+            else if (isalpha(*Ptr)) // check ID
+            {
+                //Ptr++
+                for( i = 0 ; isalnum(*(Ptr)) || *(Ptr) == '_' ; Ptr++ , i++ )
+                    id_tmp[i] = *Ptr;
 
-				id_tmp[i] = '\0';
+                id_tmp[i] = '\0';
 
-				if( Check_Reserved_Word(id_tmp) )
-				{
-					fprintf(output_file,"%s ",id_tmp);
-				}
-				else
-					fprintf(output_file,"ID ");
+                if( Check_Reserved_Word(id_tmp) )
+                {
+                    fprintf(output_file,"%s ",id_tmp);
+                }
+                else
+                    fprintf(output_file,"ID ");
 
-				continue;
+                continue;
 
-			}
-			else if (isdigit(*Ptr)) // check INT_NUM || FLOAT_NUM
-			{
+            }
+            else if (isdigit(*Ptr)) // check INT_NUM || FLOAT_NUM
+            {
 
-				for( i = 0 ; isdigit(*Ptr)  ; Ptr++ , i++ )
-					id_tmp[i] = *Ptr;
+                for( i = 0 ; isdigit(*Ptr)  ; Ptr++ , i++ )
+                    id_tmp[i] = *Ptr;
 
-				if( *Ptr == '.' ) // check FLOAT
-				{
-					Ptr++;
-					id_tmp[i] = '.';
-					for( i++ ; isdigit(*Ptr) ; i++ , Ptr++ )
-						id_tmp[i] = *Ptr;
-					id_tmp[i] = '\0';
+                if( *Ptr == '.' ) // check FLOAT
+                {
+                    Ptr++;
+                    id_tmp[i] = '.';
+                    for( i++ ; isdigit(*Ptr) ; i++ , Ptr++ )
+                        id_tmp[i] = *Ptr;
+                    id_tmp[i] = '\0';
 
-					fprintf(output_file,"FLOAT_NUM " );
-				}
-				else
-				{
-					id_tmp[i] = '\0';
-					fprintf(output_file,"INT_NUM ");
-				}
-				continue;
-			}
-			else if ( *Ptr == '&' )		// looking for && AND_OP
-			{
-				if( *(Ptr+1) == '&' )
-				{
-					Ptr+=2;
-					fprintf(output_file,"&& ");    
-				}
-				else
-				{
-					fprintf(output_file,"%c ",*Ptr);
-					Ptr++;
-				}
-				continue;
-			} 
-			else if ( *Ptr == '|' ) 	// looking for || OR_OP
-			{
-				if( *(Ptr+1) == '|' )
-				{
-					Ptr+=2;
-					fprintf(output_file,"|| ");
-				}
-				else
-				{
-					fprintf(output_file,"%c ",*Ptr);
-					Ptr++;
-				}
-				continue;
-			}
-			else if ( *Ptr == '<' )		// looking for <= LE_OP
-			{
-				if( *(Ptr+1) == '=' )
-				{
-					Ptr+=2;
-					fprintf(output_file,"<= ");    
-				}
-				else
-				{
-					Ptr++;
-					fprintf(output_file,"< ");
-				}
-				continue;
-			} 
-			else if ( *Ptr == '>' ) 	// looking for >= GE_OP
-			{
-				if( *(Ptr+1) == '=' )
-				{
-					Ptr+=2;
-					fprintf(output_file,">= ");
-				}
-				else
-				{
-					Ptr++;
-					fprintf(output_file,"> ");
-				}
-				continue;
-			}
-			else if ( *Ptr == '=' ) 	// looking for == EQ_OP
-			{
-				if( *(Ptr+1) == '=' )
-				{
-					Ptr+=2;
-					fprintf(output_file,"== ");
-				}
-				else
-				{
-					Ptr++;
-					fprintf(output_file,"= ");
-				}
-				continue;
-			}
-			else if ( *Ptr == '!' ) 	// looking for != NE_OP
-			{
-				if( *(Ptr+1) == '=' )
-				{
-					Ptr+=2;
-					fprintf(output_file,"!= ");
-				}
-				else
-				{
-					fprintf(output_file,"! ");
-					Ptr++;
-				}
-				continue;
-			}
-			else if ( *Ptr == '/' )		// looking for /* ... */ or //
-			{
-				if( *(Ptr+1) == '*' )
-				{
-					Ptr++;
-					COMMENT_MARK = TRUE;
-					continue;
-				}
-				else if( *(Ptr+1) == '/' )
-					break;
-				else
-				{
-					fprintf(output_file,"/ ");
-					Ptr++;    
-				}
+                    fprintf(output_file,"FLOAT_NUM " );
+                }
+                else
+                {
+                    id_tmp[i] = '\0';
+                    fprintf(output_file,"INT_NUM ");
+                }
+                continue;
+            }
+            else if ( *Ptr == '&' )     // looking for && AND_OP
+            {
+                if( *(Ptr+1) == '&' )
+                {
+                    Ptr+=2;
+                    fprintf(output_file,"&& ");    
+                }
+                else
+                {
+                    fprintf(output_file,"%c ",*Ptr);
+                    Ptr++;
+                }
+                continue;
+            } 
+            else if ( *Ptr == '|' )     // looking for || OR_OP
+            {
+                if( *(Ptr+1) == '|' )
+                {
+                    Ptr+=2;
+                    fprintf(output_file,"|| ");
+                }
+                else
+                {
+                    fprintf(output_file,"%c ",*Ptr);
+                    Ptr++;
+                }
+                continue;
+            }
+            else if ( *Ptr == '<' )     // looking for <= LE_OP
+            {
+                if( *(Ptr+1) == '=' )
+                {
+                    Ptr+=2;
+                    fprintf(output_file,"<= ");    
+                }
+                else
+                {
+                    Ptr++;
+                    fprintf(output_file,"< ");
+                }
+                continue;
+            } 
+            else if ( *Ptr == '>' )     // looking for >= GE_OP
+            {
+                if( *(Ptr+1) == '=' )
+                {
+                    Ptr+=2;
+                    fprintf(output_file,">= ");
+                }
+                else
+                {
+                    Ptr++;
+                    fprintf(output_file,"> ");
+                }
+                continue;
+            }
+            else if ( *Ptr == '=' )     // looking for == EQ_OP
+            {
+                if( *(Ptr+1) == '=' )
+                {
+                    Ptr+=2;
+                    fprintf(output_file,"== ");
+                }
+                else
+                {
+                    Ptr++;
+                    fprintf(output_file,"= ");
+                }
+                continue;
+            }
+            else if ( *Ptr == '!' )     // looking for != NE_OP
+            {
+                if( *(Ptr+1) == '=' )
+                {
+                    Ptr+=2;
+                    fprintf(output_file,"!= ");
+                }
+                else
+                {
+                    fprintf(output_file,"! ");
+                    Ptr++;
+                }
+                continue;
+            }
+            else if ( *Ptr == '/' )     // looking for /* ... */ or //
+            {
+                if( *(Ptr+1) == '*' )
+                {
+                    Ptr++;
+                    COMMENT_MARK = TRUE;
+                    continue;
+                }
+                else if( *(Ptr+1) == '/' )
+                    break;
+                else
+                {
+                    fprintf(output_file,"/ ");
+                    Ptr++;    
+                }
 
-			}
-			else if( *Ptr == '{' || *Ptr == '}' || *Ptr == '(' || *Ptr == ')' || *Ptr == ';' || *Ptr == ',' || *Ptr == '.' || *Ptr == '*' || *Ptr == '+' || *Ptr == '-' ) // other symbol
-			{
-				fprintf(output_file,"%c ",*Ptr);
-			}
-			else
-			{
-				fprintf(output_file,"%c ",*Ptr);
-			}
+            }
+            else if( *Ptr == '{' || *Ptr == '}' || *Ptr == '(' || *Ptr == ')' || *Ptr == ';' || *Ptr == ',' || *Ptr == '.' || *Ptr == '*' || *Ptr == '+' || *Ptr == '-' ) // other symbol
+            {
+                fprintf(output_file,"%c ",*Ptr);
+            }
+            else
+            {
+                fprintf(output_file,"%c ",*Ptr);
+            }
 
 
-			Ptr++;
-		}
-	}
+            Ptr++;
+        }
+    }
     fprintf(output_file,"$");
-	free(read_word);
-	fclose(input_file);
-	fclose(output_file);
+    free(read_word);
+    fclose(input_file);
+    fclose(output_file);
 
-	return 0;
+    return 0;
 }
 
 int Check_Reserved_Word(char *string )
 {
-	int i;
-	for( i = 0 ; i < 9 ; i++ )
-	{
-		if( strcmp(Reserved_word[i],string) == 0 )
-			return TRUE;
-	}
-	return FALSE;
+    int i;
+    for( i = 0 ; i < 9 ; i++ )
+    {
+        if( strcmp(Reserved_word[i],string) == 0 )
+            return TRUE;
+    }
+    return FALSE;
 }
