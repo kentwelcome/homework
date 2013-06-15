@@ -1,0 +1,60 @@
+1.	program ¡÷ declaration-list
+2.	declaration-list ¡÷ N1 T1
+2.	N1 ¡÷ declaration
+2.	T1 ¡÷ declaration T1 | £f
+3.	declaration ¡÷ type-specifier ID N8
+3.	N8 ¡÷ T81 | T82
+3.	T81 ¡÷ ;
+3.	T82 ¡÷ ( params ) compound-stmt
+4.	var-declaration ¡÷ type-specifier ID ;
+5.	type-specifier ¡÷ int | void | float
+6.	fun-declaration ¡÷ type-specifier ID ( params ) compound-stmt
+7.	params ¡÷ param-list | Nvoid | £f
+7.	Nvoid ¡÷ void Tvoid
+7.	Tvoid ¡÷ ID T2 | £f
+8.	param-list ¡÷ N2 T2
+8.	N2 ¡÷ param2
+8.	T2 ¡÷ , param T2 | £f
+9.	param ¡÷ type-specifier ID
+9.	param2 ¡÷ int ID | float ID
+10.	compound-stmt ¡÷ { local-declarations statement-list }
+11.	local-declarations ¡÷ N3 T3
+11.	N3 ¡÷ £f
+11.	T3 ¡÷ var-declaration T3 | £f
+12.	statement-list ¡÷ N4 T4
+12.	N4 ¡÷ £f
+12.	T4 ¡÷ statement T4 | £f
+13.	statement ¡÷ expression-stmt | compound-stmt | selection-stmt | iteration-stmt | jump-stmt
+14.	expression-stmt ¡÷ expression ; | ;
+15.	selection-stmt ¡÷ if ( expression ) statement N13
+15.	N13 ¡÷ else statement | £f
+16.	iteration-stmt ¡÷ while-statement | for-statement
+17.	while-statement ¡÷ while ( expression ) statement
+18.	for-statement ¡÷ for ( expression ; expression ; expression ) statement
+19.	jump-stmt ¡÷ return N9 | break ;
+19.	N9 ¡÷ ; | expression ;
+20.	expression ¡÷ id-assign = expression | simple-expression
+21.	id-assign ¡÷ ID
+22.	simple-expression ¡÷ additive-expression N7
+22.	N7 ¡÷ relop additive-expression | £f
+23.	relop ¡÷ <= | < | > | >= | == | != | && | ||
+24.	additive-expression  ¡÷ N5 T5
+24.	N5 ¡÷ term
+24.	T5 ¡÷ addop term T5 | £f
+25.	addop ¡÷ + | -
+26.	term ¡÷ N6 T6
+26.	N6 ¡÷ factor
+26.	T6 ¡÷ mulop factor T6 | £f
+27.	mulop ¡÷ * | /
+28.	factor ¡÷ ( expression ) | N11 | num
+28.	N11 ¡÷ ID
+28.	T11 ¡÷ ( args ) | £f
+29.	call ¡÷ ID ( args )
+30.	args ¡÷ arg-list | £f
+31.	arg-list ¡÷ N10 T10
+31.	N10 ¡÷ expression
+31.	T10 ¡÷ , expression T10 | £f
+32.	num ¡÷ pos-num | neg-num
+33.	pos-num ¡÷ + value | value
+34.	neg-num ¡÷ - value
+35.	value ¡÷ INT_NUM | FLOAT_NUM

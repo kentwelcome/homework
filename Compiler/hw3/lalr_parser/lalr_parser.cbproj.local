@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2009/06/14 15:04:34.218.cbproj,D:\My Documents\RAD Studio\Projects\Project2.cbproj=D:\My Documents\RAD Studio\Projects\lalr_parser.cbproj</Transaction>
+    <Transaction>2009/06/14 15:05:01.093.cpp,D:\My Documents\RAD Studio\Projects\Unit3.cpp=D:\My Documents\RAD Studio\Projects\lalr.cpp</Transaction>
+    <Transaction>2009/06/14 15:05:01.093.h,D:\My Documents\RAD Studio\Projects\Unit3.h=D:\My Documents\RAD Studio\Projects\lalr.h</Transaction>
+    <Transaction>2009/06/14 15:05:01.093.dfm,D:\My Documents\RAD Studio\Projects\Unit3.dfm=D:\My Documents\RAD Studio\Projects\lalr.dfm</Transaction>
+    <Transaction>2009/06/14 15:05:29.203.cpp,D:\My Documents\RAD Studio\Projects\lalr.cpp=D:\My Documents\RAD Studio\Projects\lalr_parser\lalr.cpp</Transaction>
+    <Transaction>2009/06/14 15:05:29.203.h,D:\My Documents\RAD Studio\Projects\lalr.h=D:\My Documents\RAD Studio\Projects\lalr_parser\lalr.h</Transaction>
+    <Transaction>2009/06/14 15:05:29.203.dfm,D:\My Documents\RAD Studio\Projects\lalr.dfm=D:\My Documents\RAD Studio\Projects\lalr_parser\lalr.dfm</Transaction>
+    <Transaction>2009/06/14 15:05:33.718.cbproj,D:\My Documents\RAD Studio\Projects\lalr_parser.cbproj=D:\My Documents\RAD Studio\Projects\lalr_parser\lalr_parser.cbproj</Transaction>
+  </Transactions>
+</BorlandProject>

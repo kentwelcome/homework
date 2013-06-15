@@ -1,0 +1,872 @@
+State 0
+program ¡÷¡E declaration-list $  { }
+declaration-list ¡÷¡E declaration-list declaration  { int void float $ }
+declaration-list ¡÷¡E declaration  { int void float $ }
+declaration ¡÷¡E var-declaration  { $ float void int }
+var-declaration ¡÷¡E type-specifier ID ;  { int void float $ }
+type-specifier ¡÷¡E int  { ID }
+type-specifier ¡÷¡E void  { ID }
+type-specifier ¡÷¡E float  { ID }
+declaration ¡÷¡E fun-declaration  { $ float void int }
+fun-declaration ¡÷¡E type-specifier ID ( params ) compound-stmt  { int void float $ }
+
+State 1
+program ¡÷ declaration-list¡E $  { }
+declaration-list ¡÷ declaration-list¡E declaration  { float void int $ }
+declaration ¡÷¡E var-declaration  { int void float $ }
+var-declaration ¡÷¡E type-specifier ID ;  { float void int $ }
+type-specifier ¡÷¡E int  { ID }
+type-specifier ¡÷¡E void  { ID }
+type-specifier ¡÷¡E float  { ID }
+declaration ¡÷¡E fun-declaration  { int void float $ }
+fun-declaration ¡÷¡E type-specifier ID ( params ) compound-stmt  { float void int $ }
+
+State 2
+program ¡÷ declaration-list $¡E  { }
+
+State 3
+declaration-list ¡÷ declaration-list declaration¡E  { int void float $ }
+
+State 4
+declaration ¡÷ var-declaration¡E  { float void int $ }
+
+State 5
+var-declaration ¡÷ type-specifier¡E ID ;  { float void int FLOAT_NUM INT_NUM - + ( ID for while break return if { ; } $ }
+fun-declaration ¡÷ type-specifier¡E ID ( params ) compound-stmt  { int void float $ }
+
+State 6
+var-declaration ¡÷ type-specifier ID¡E ;  { } ; { if return break while for ID ( + - INT_NUM FLOAT_NUM int void float $ }
+fun-declaration ¡÷ type-specifier ID¡E ( params ) compound-stmt  { float void int $ }
+
+State 7
+var-declaration ¡÷ type-specifier ID ;¡E  { float void int FLOAT_NUM INT_NUM - + ( ID for while break return if { ; } $ }
+
+State 8
+fun-declaration ¡÷ type-specifier ID (¡E params ) compound-stmt  { int void float $ }
+params ¡÷¡E param-list  { ) }
+param-list ¡÷¡E param-list , param  { , ) }
+param-list ¡÷¡E param  { , ) }
+param ¡÷¡E type-specifier ID  { ) , }
+type-specifier ¡÷¡E int  { ID }
+type-specifier ¡÷¡E void  { ID }
+type-specifier ¡÷¡E float  { ID }
+params ¡÷¡E void  { ) }
+params ¡÷ £f¡E  { ) }
+
+State 9
+fun-declaration ¡÷ type-specifier ID ( params¡E ) compound-stmt  { float void int $ }
+
+State 10
+fun-declaration ¡÷ type-specifier ID ( params )¡E compound-stmt  { int void float $ }
+compound-stmt ¡÷¡E { local-declarations statement-list }  { float void int $ }
+
+State 11
+fun-declaration ¡÷ type-specifier ID ( params ) compound-stmt¡E  { float void int $ }
+
+State 12
+compound-stmt ¡÷ {¡E local-declarations statement-list }  { int void float else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } $ }
+local-declarations ¡÷¡E local-declarations var-declaration  { int void float } ; { if return break while for ID ( + - INT_NUM FLOAT_NUM }
+local-declarations ¡÷ £f¡E  { int void float } ; { if return break while for ID ( + - INT_NUM FLOAT_NUM }
+
+State 13
+compound-stmt ¡÷ { local-declarations¡E statement-list }  { float void int else FLOAT_NUM INT_NUM - + ( ID for while break return if { ; } $ }
+local-declarations ¡÷ local-declarations¡E var-declaration  { float void int FLOAT_NUM INT_NUM - + ( ID for while break return if { ; } }
+statement-list ¡÷¡E statement-list statement  { ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+statement-list ¡÷ £f¡E  { ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+var-declaration ¡÷¡E type-specifier ID ;  { } ; { if return break while for ID ( + - INT_NUM FLOAT_NUM int void float }
+type-specifier ¡÷¡E int  { ID }
+type-specifier ¡÷¡E void  { ID }
+type-specifier ¡÷¡E float  { ID }
+
+State 14
+compound-stmt ¡÷ { local-declarations statement-list¡E }  { int void float else FLOAT_NUM INT_NUM - + ( ID for while break return if { ; } $ }
+statement-list ¡÷ statement-list¡E statement  { FLOAT_NUM INT_NUM - + ( ID for while break return if { ; } }
+statement ¡÷¡E expression-stmt  { ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+expression-stmt ¡÷¡E expression ;  { FLOAT_NUM INT_NUM - + ( ID for while break return if { ; } }
+expression ¡÷¡E id-assign = expression  { ; }
+id-assign ¡÷¡E ID  { ; * / || && != == >= > < <= - + = }
+expression ¡÷¡E simple-expression  { ; }
+simple-expression ¡÷¡E additive-expression relop additive-expression  { ; }
+additive-expression ¡÷¡E additive-expression addop term  { ; + - <= < > >= == != && || }
+additive-expression ¡÷¡E term  { ; + - <= < > >= == != && || }
+term ¡÷¡E term mulop factor  { ; * / || && != == >= > < <= - + }
+term ¡÷¡E factor  { ; * / || && != == >= > < <= - + }
+factor ¡÷¡E ( expression )  { ; + - <= < > >= == != && || / * }
+factor ¡÷¡E id-assign  { ; + - <= < > >= == != && || / * }
+factor ¡÷¡E call  { ; + - <= < > >= == != && || / * }
+call ¡÷¡E ID ( args )  { ; * / || && != == >= > < <= - + }
+factor ¡÷¡E num  { ; + - <= < > >= == != && || / * }
+num ¡÷¡E pos-num  { ; * / || && != == >= > < <= - + }
+pos-num ¡÷¡E + value  { ; + - <= < > >= == != && || / * }
+pos-num ¡÷¡E value  { ; + - <= < > >= == != && || / * }
+value ¡÷¡E INT_NUM  { ; * / || && != == >= > < <= - + }
+value ¡÷¡E FLOAT_NUM  { ; * / || && != == >= > < <= - + }
+num ¡÷¡E neg-num  { ; * / || && != == >= > < <= - + }
+neg-num ¡÷¡E - value  { ; + - <= < > >= == != && || / * }
+simple-expression ¡÷¡E additive-expression  { ; }
+expression-stmt ¡÷¡E ;  { FLOAT_NUM INT_NUM - + ( ID for while break return if { ; } }
+statement ¡÷¡E compound-stmt  { ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+compound-stmt ¡÷¡E { local-declarations statement-list }  { FLOAT_NUM INT_NUM - + ( ID for while break return if { ; } }
+statement ¡÷¡E selection-stmt  { ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+selection-stmt ¡÷¡E if ( expression ) statement  { } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+selection-stmt ¡÷¡E if ( expression ) statement else statement  { } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+statement ¡÷¡E iteration-stmt  { ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+iteration-stmt ¡÷¡E while-statement  { } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+while-statement ¡÷¡E while ( expression ) statement  { ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+iteration-stmt ¡÷¡E for-statement  { } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+for-statement ¡÷¡E for ( expression ; expression ; expression ) statement  { ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+statement ¡÷¡E jump-stmt  { ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+jump-stmt ¡÷¡E return ;  { } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+jump-stmt ¡÷¡E return expression ;  { } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+jump-stmt ¡÷¡E break ;  { } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+
+State 15
+compound-stmt ¡÷ { local-declarations statement-list }¡E  { float void int else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } $ }
+
+State 16
+statement-list ¡÷ statement-list statement¡E  { ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+
+State 17
+statement ¡÷ expression-stmt¡E  { else FLOAT_NUM INT_NUM - + ( ID for while break return if { ; } }
+
+State 18
+expression-stmt ¡÷ expression¡E ;  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+
+State 19
+expression-stmt ¡÷ expression ;¡E  { else FLOAT_NUM INT_NUM - + ( ID for while break return if { ; } }
+
+State 20
+expression ¡÷ id-assign¡E = expression  { , ) ; }
+factor ¡÷ id-assign¡E  { ; , ) * / || && != == >= > < <= - + }
+
+State 21
+expression ¡÷ id-assign =¡E expression  { , ) ; }
+expression ¡÷¡E id-assign = expression  { , ) ; }
+id-assign ¡÷¡E ID  { * / || && != == >= > < <= - + = }
+expression ¡÷¡E simple-expression  { , ) ; }
+simple-expression ¡÷¡E additive-expression relop additive-expression  { , ) ; }
+additive-expression ¡÷¡E additive-expression addop term  { + - <= < > >= == != && || }
+additive-expression ¡÷¡E term  { + - <= < > >= == != && || }
+term ¡÷¡E term mulop factor  { * / || && != == >= > < <= - + }
+term ¡÷¡E factor  { * / || && != == >= > < <= - + }
+factor ¡÷¡E ( expression )  { + - <= < > >= == != && || / * }
+factor ¡÷¡E id-assign  { + - <= < > >= == != && || / * }
+factor ¡÷¡E call  { + - <= < > >= == != && || / * }
+call ¡÷¡E ID ( args )  { * / || && != == >= > < <= - + }
+factor ¡÷¡E num  { + - <= < > >= == != && || / * }
+num ¡÷¡E pos-num  { * / || && != == >= > < <= - + }
+pos-num ¡÷¡E + value  { + - <= < > >= == != && || / * }
+pos-num ¡÷¡E value  { + - <= < > >= == != && || / * }
+value ¡÷¡E INT_NUM  { * / || && != == >= > < <= - + }
+value ¡÷¡E FLOAT_NUM  { * / || && != == >= > < <= - + }
+num ¡÷¡E neg-num  { * / || && != == >= > < <= - + }
+neg-num ¡÷¡E - value  { + - <= < > >= == != && || / * }
+simple-expression ¡÷¡E additive-expression  { ; ) , }
+
+State 22
+expression ¡÷ id-assign = expression¡E  { , ) ; }
+
+State 23
+id-assign ¡÷ ID¡E  { ; ) , + - <= < > >= == != && || / * = }
+call ¡÷ ID¡E ( args )  { ; ) , + - <= < > >= == != && || / * }
+
+State 24
+call ¡÷ ID (¡E args )  { , ) ; * / || && != == >= > < <= - + }
+args ¡÷¡E arg-list  { ) }
+arg-list ¡÷¡E arg-list , expression  { , ) }
+arg-list ¡÷¡E expression  { , ) }
+expression ¡÷¡E id-assign = expression  { ) , }
+id-assign ¡÷¡E ID  { , ) * / || && != == >= > < <= - + = }
+expression ¡÷¡E simple-expression  { ) , }
+simple-expression ¡÷¡E additive-expression relop additive-expression  { , ) }
+additive-expression ¡÷¡E additive-expression addop term  { ) , + - <= < > >= == != && || }
+additive-expression ¡÷¡E term  { ) , + - <= < > >= == != && || }
+term ¡÷¡E term mulop factor  { , ) * / || && != == >= > < <= - + }
+term ¡÷¡E factor  { , ) * / || && != == >= > < <= - + }
+factor ¡÷¡E ( expression )  { ) , + - <= < > >= == != && || / * }
+factor ¡÷¡E id-assign  { ) , + - <= < > >= == != && || / * }
+factor ¡÷¡E call  { ) , + - <= < > >= == != && || / * }
+call ¡÷¡E ID ( args )  { , ) * / || && != == >= > < <= - + }
+factor ¡÷¡E num  { ) , + - <= < > >= == != && || / * }
+num ¡÷¡E pos-num  { , ) * / || && != == >= > < <= - + }
+pos-num ¡÷¡E + value  { ) , + - <= < > >= == != && || / * }
+pos-num ¡÷¡E value  { ) , + - <= < > >= == != && || / * }
+value ¡÷¡E INT_NUM  { , ) * / || && != == >= > < <= - + }
+value ¡÷¡E FLOAT_NUM  { , ) * / || && != == >= > < <= - + }
+num ¡÷¡E neg-num  { , ) * / || && != == >= > < <= - + }
+neg-num ¡÷¡E - value  { ) , + - <= < > >= == != && || / * }
+simple-expression ¡÷¡E additive-expression  { , ) }
+args ¡÷ £f¡E  { ) }
+
+State 25
+call ¡÷ ID ( args¡E )  { ; ) , + - <= < > >= == != && || / * }
+
+State 26
+call ¡÷ ID ( args )¡E  { , ) ; * / || && != == >= > < <= - + }
+
+State 27
+args ¡÷ arg-list¡E  { ) }
+arg-list ¡÷ arg-list¡E , expression  { , ) }
+
+State 28
+arg-list ¡÷ arg-list ,¡E expression  { , ) }
+expression ¡÷¡E id-assign = expression  { , ) }
+id-assign ¡÷¡E ID  { * / || && != == >= > < <= - + = }
+expression ¡÷¡E simple-expression  { , ) }
+simple-expression ¡÷¡E additive-expression relop additive-expression  { , ) }
+additive-expression ¡÷¡E additive-expression addop term  { + - <= < > >= == != && || }
+additive-expression ¡÷¡E term  { + - <= < > >= == != && || }
+term ¡÷¡E term mulop factor  { * / || && != == >= > < <= - + }
+term ¡÷¡E factor  { * / || && != == >= > < <= - + }
+factor ¡÷¡E ( expression )  { + - <= < > >= == != && || / * }
+factor ¡÷¡E id-assign  { + - <= < > >= == != && || / * }
+factor ¡÷¡E call  { + - <= < > >= == != && || / * }
+call ¡÷¡E ID ( args )  { * / || && != == >= > < <= - + }
+factor ¡÷¡E num  { + - <= < > >= == != && || / * }
+num ¡÷¡E pos-num  { * / || && != == >= > < <= - + }
+pos-num ¡÷¡E + value  { + - <= < > >= == != && || / * }
+pos-num ¡÷¡E value  { + - <= < > >= == != && || / * }
+value ¡÷¡E INT_NUM  { * / || && != == >= > < <= - + }
+value ¡÷¡E FLOAT_NUM  { * / || && != == >= > < <= - + }
+num ¡÷¡E neg-num  { * / || && != == >= > < <= - + }
+neg-num ¡÷¡E - value  { + - <= < > >= == != && || / * }
+simple-expression ¡÷¡E additive-expression  { , ) }
+
+State 29
+arg-list ¡÷ arg-list , expression¡E  { , ) }
+
+State 30
+expression ¡÷ simple-expression¡E  { , ) ; }
+
+State 31
+simple-expression ¡÷ additive-expression¡E relop additive-expression  { , ) ; }
+additive-expression ¡÷ additive-expression¡E addop term  { ; , ) - + || && != == >= > < <= }
+simple-expression ¡÷ additive-expression¡E  { ; , ) }
+relop ¡÷¡E <=  { ( ID + - INT_NUM FLOAT_NUM }
+relop ¡÷¡E <  { ( ID + - INT_NUM FLOAT_NUM }
+relop ¡÷¡E >  { ( ID + - INT_NUM FLOAT_NUM }
+relop ¡÷¡E >=  { ( ID + - INT_NUM FLOAT_NUM }
+relop ¡÷¡E ==  { ( ID + - INT_NUM FLOAT_NUM }
+relop ¡÷¡E !=  { ( ID + - INT_NUM FLOAT_NUM }
+relop ¡÷¡E &&  { ( ID + - INT_NUM FLOAT_NUM }
+relop ¡÷¡E ||  { ( ID + - INT_NUM FLOAT_NUM }
+addop ¡÷¡E +  { ( ID + - INT_NUM FLOAT_NUM }
+addop ¡÷¡E -  { ( ID + - INT_NUM FLOAT_NUM }
+
+State 32
+simple-expression ¡÷ additive-expression relop¡E additive-expression  { , ) ; }
+additive-expression ¡÷¡E additive-expression addop term  { + - , ) ; }
+additive-expression ¡÷¡E term  { + - ; ) , }
+term ¡÷¡E term mulop factor  { * / , ) ; - + }
+term ¡÷¡E factor  { * / , ) ; - + }
+factor ¡÷¡E ( expression )  { + - ; ) , / * }
+factor ¡÷¡E id-assign  { + - ; ) , / * }
+id-assign ¡÷¡E ID  { * / , ) ; - + }
+factor ¡÷¡E call  { + - ; ) , / * }
+call ¡÷¡E ID ( args )  { * / , ) ; - + }
+factor ¡÷¡E num  { + - ; ) , / * }
+num ¡÷¡E pos-num  { * / , ) ; - + }
+pos-num ¡÷¡E + value  { + - ; ) , / * }
+pos-num ¡÷¡E value  { + - ; ) , / * }
+value ¡÷¡E INT_NUM  { * / , ) ; - + }
+value ¡÷¡E FLOAT_NUM  { * / , ) ; - + }
+num ¡÷¡E neg-num  { * / , ) ; - + }
+neg-num ¡÷¡E - value  { + - ; ) , / * }
+
+State 33
+simple-expression ¡÷ additive-expression relop additive-expression¡E  { , ) ; }
+additive-expression ¡÷ additive-expression¡E addop term  { - + , ) ; }
+addop ¡÷¡E +  { ( ID + - INT_NUM FLOAT_NUM }
+addop ¡÷¡E -  { ( ID + - INT_NUM FLOAT_NUM }
+
+State 34
+additive-expression ¡÷ additive-expression addop¡E term  { , + - <= < > >= == != && || ) ; }
+term ¡÷¡E term mulop factor  { * / , - + || && != == >= > < <= ) ; }
+term ¡÷¡E factor  { * / ; ) || && != == >= > < <= - + , }
+factor ¡÷¡E ( expression )  { , + - <= < > >= == != && || ) ; / * }
+factor ¡÷¡E id-assign  { , + - <= < > >= == != && || ) ; / * }
+id-assign ¡÷¡E ID  { * / ; ) || && != == >= > < <= - + , }
+factor ¡÷¡E call  { , + - <= < > >= == != && || ) ; / * }
+call ¡÷¡E ID ( args )  { * / ; ) || && != == >= > < <= - + , }
+factor ¡÷¡E num  { , + - <= < > >= == != && || ) ; / * }
+num ¡÷¡E pos-num  { * / ; ) || && != == >= > < <= - + , }
+pos-num ¡÷¡E + value  { , + - <= < > >= == != && || ) ; / * }
+pos-num ¡÷¡E value  { , + - <= < > >= == != && || ) ; / * }
+value ¡÷¡E INT_NUM  { * / ; ) || && != == >= > < <= - + , }
+value ¡÷¡E FLOAT_NUM  { * / ; ) || && != == >= > < <= - + , }
+num ¡÷¡E neg-num  { * / ; ) || && != == >= > < <= - + , }
+neg-num ¡÷¡E - value  { , + - <= < > >= == != && || ) ; / * }
+
+State 35
+additive-expression ¡÷ additive-expression addop term¡E  { , - + || && != == >= > < <= ) ; }
+term ¡÷ term¡E mulop factor  { / * , + - <= < > >= == != && || ) ; }
+mulop ¡÷¡E *  { ( ID + - INT_NUM FLOAT_NUM }
+mulop ¡÷¡E /  { ( ID + - INT_NUM FLOAT_NUM }
+
+State 36
+term ¡÷ term mulop¡E factor  { , * / - + || && != == >= > < <= ) ; }
+factor ¡÷¡E ( expression )  { , / * + - <= < > >= == != && || ) ; }
+factor ¡÷¡E id-assign  { ; ) <= < > >= == != && || + - / * , }
+id-assign ¡÷¡E ID  { , * / - + || && != == >= > < <= ) ; }
+factor ¡÷¡E call  { ; ) <= < > >= == != && || + - / * , }
+call ¡÷¡E ID ( args )  { , * / - + || && != == >= > < <= ) ; }
+factor ¡÷¡E num  { ; ) <= < > >= == != && || + - / * , }
+num ¡÷¡E pos-num  { , * / - + || && != == >= > < <= ) ; }
+pos-num ¡÷¡E + value  { ; ) <= < > >= == != && || + - / * , }
+pos-num ¡÷¡E value  { ; ) <= < > >= == != && || + - / * , }
+value ¡÷¡E INT_NUM  { , * / - + || && != == >= > < <= ) ; }
+value ¡÷¡E FLOAT_NUM  { , * / - + || && != == >= > < <= ) ; }
+num ¡÷¡E neg-num  { , * / - + || && != == >= > < <= ) ; }
+neg-num ¡÷¡E - value  { ; ) <= < > >= == != && || + - / * , }
+
+State 37
+term ¡÷ term mulop factor¡E  { , / * + - <= < > >= == != && || ) ; }
+
+State 38
+factor ¡÷ (¡E expression )  { , * / - + || && != == >= > < <= ) ; }
+expression ¡÷¡E id-assign = expression  { ) }
+id-assign ¡÷¡E ID  { * / || && != == >= > < <= - + = }
+expression ¡÷¡E simple-expression  { ) }
+simple-expression ¡÷¡E additive-expression relop additive-expression  { ) }
+additive-expression ¡÷¡E additive-expression addop term  { + - <= < > >= == != && || }
+additive-expression ¡÷¡E term  { + - <= < > >= == != && || }
+term ¡÷¡E term mulop factor  { * / || && != == >= > < <= - + }
+term ¡÷¡E factor  { * / || && != == >= > < <= - + }
+factor ¡÷¡E ( expression )  { + - <= < > >= == != && || / * }
+factor ¡÷¡E id-assign  { + - <= < > >= == != && || / * }
+factor ¡÷¡E call  { + - <= < > >= == != && || / * }
+call ¡÷¡E ID ( args )  { * / || && != == >= > < <= - + }
+factor ¡÷¡E num  { + - <= < > >= == != && || / * }
+num ¡÷¡E pos-num  { * / || && != == >= > < <= - + }
+pos-num ¡÷¡E + value  { + - <= < > >= == != && || / * }
+pos-num ¡÷¡E value  { + - <= < > >= == != && || / * }
+value ¡÷¡E INT_NUM  { * / || && != == >= > < <= - + }
+value ¡÷¡E FLOAT_NUM  { * / || && != == >= > < <= - + }
+num ¡÷¡E neg-num  { * / || && != == >= > < <= - + }
+neg-num ¡÷¡E - value  { + - <= < > >= == != && || / * }
+simple-expression ¡÷¡E additive-expression  { ) }
+
+State 39
+factor ¡÷ ( expression¡E )  { , / * + - <= < > >= == != && || ) ; }
+
+State 40
+factor ¡÷ ( expression )¡E  { , * / - + || && != == >= > < <= ) ; }
+
+State 41
+additive-expression ¡÷ term¡E  { ; , ) - + || && != == >= > < <= }
+term ¡÷ term¡E mulop factor  { ; ) , / * + - <= < > >= == != && || }
+mulop ¡÷¡E *  { ( ID + - INT_NUM FLOAT_NUM }
+mulop ¡÷¡E /  { ( ID + - INT_NUM FLOAT_NUM }
+
+State 42
+mulop ¡÷ *¡E  { FLOAT_NUM INT_NUM - + ID ( }
+
+State 43
+mulop ¡÷ /¡E  { FLOAT_NUM INT_NUM - + ID ( }
+
+State 44
+term ¡÷ factor¡E  { , ) ; / * + - <= < > >= == != && || }
+
+State 45
+factor ¡÷ call¡E  { , ) ; * / || && != == >= > < <= - + }
+
+State 46
+factor ¡÷ num¡E  { , ) ; * / || && != == >= > < <= - + }
+
+State 47
+num ¡÷ pos-num¡E  { ; ) , + - <= < > >= == != && || / * }
+
+State 48
+pos-num ¡÷ +¡E value  { , ) ; * / || && != == >= > < <= - + }
+value ¡÷¡E INT_NUM  { ; ) , + - <= < > >= == != && || / * }
+value ¡÷¡E FLOAT_NUM  { ; ) , + - <= < > >= == != && || / * }
+
+State 49
+pos-num ¡÷ + value¡E  { ; ) , + - <= < > >= == != && || / * }
+
+State 50
+value ¡÷ INT_NUM¡E  { , ) ; * / || && != == >= > < <= - + }
+
+State 51
+value ¡÷ FLOAT_NUM¡E  { , ) ; * / || && != == >= > < <= - + }
+
+State 52
+pos-num ¡÷ value¡E  { , ) ; * / || && != == >= > < <= - + }
+
+State 53
+num ¡÷ neg-num¡E  { ; ) , + - <= < > >= == != && || / * }
+
+State 54
+neg-num ¡÷ -¡E value  { , ) ; * / || && != == >= > < <= - + }
+value ¡÷¡E INT_NUM  { ; ) , + - <= < > >= == != && || / * }
+value ¡÷¡E FLOAT_NUM  { ; ) , + - <= < > >= == != && || / * }
+
+State 55
+neg-num ¡÷ - value¡E  { ; ) , + - <= < > >= == != && || / * }
+
+State 56
+factor ¡÷ id-assign¡E  { , * / - + || && != == >= > < <= ) ; }
+
+State 57
+addop ¡÷ +¡E  { FLOAT_NUM INT_NUM - + ID ( }
+
+State 58
+addop ¡÷ -¡E  { FLOAT_NUM INT_NUM - + ID ( }
+
+State 59
+relop ¡÷ <=¡E  { FLOAT_NUM INT_NUM - + ID ( }
+
+State 60
+relop ¡÷ <¡E  { FLOAT_NUM INT_NUM - + ID ( }
+
+State 61
+relop ¡÷ >¡E  { FLOAT_NUM INT_NUM - + ID ( }
+
+State 62
+relop ¡÷ >=¡E  { FLOAT_NUM INT_NUM - + ID ( }
+
+State 63
+relop ¡÷ ==¡E  { FLOAT_NUM INT_NUM - + ID ( }
+
+State 64
+relop ¡÷ !=¡E  { FLOAT_NUM INT_NUM - + ID ( }
+
+State 65
+relop ¡÷ &&¡E  { FLOAT_NUM INT_NUM - + ID ( }
+
+State 66
+relop ¡÷ ||¡E  { FLOAT_NUM INT_NUM - + ID ( }
+
+State 67
+arg-list ¡÷ expression¡E  { , ) }
+
+State 68
+expression-stmt ¡÷ ;¡E  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+
+State 69
+statement ¡÷ compound-stmt¡E  { else FLOAT_NUM INT_NUM - + ( ID for while break return if { ; } }
+
+State 70
+statement ¡÷ selection-stmt¡E  { else FLOAT_NUM INT_NUM - + ( ID for while break return if { ; } }
+
+State 71
+selection-stmt ¡÷ if¡E ( expression ) statement  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+selection-stmt ¡÷ if¡E ( expression ) statement else statement  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+
+State 72
+selection-stmt ¡÷ if (¡E expression ) statement  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+selection-stmt ¡÷ if (¡E expression ) statement else statement  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+expression ¡÷¡E id-assign = expression  { ) }
+id-assign ¡÷¡E ID  { * / || && != == >= > < <= - + = }
+expression ¡÷¡E simple-expression  { ) }
+simple-expression ¡÷¡E additive-expression relop additive-expression  { ) }
+additive-expression ¡÷¡E additive-expression addop term  { + - <= < > >= == != && || }
+additive-expression ¡÷¡E term  { + - <= < > >= == != && || }
+term ¡÷¡E term mulop factor  { * / || && != == >= > < <= - + }
+term ¡÷¡E factor  { * / || && != == >= > < <= - + }
+factor ¡÷¡E ( expression )  { + - <= < > >= == != && || / * }
+factor ¡÷¡E id-assign  { + - <= < > >= == != && || / * }
+factor ¡÷¡E call  { + - <= < > >= == != && || / * }
+call ¡÷¡E ID ( args )  { * / || && != == >= > < <= - + }
+factor ¡÷¡E num  { + - <= < > >= == != && || / * }
+num ¡÷¡E pos-num  { * / || && != == >= > < <= - + }
+pos-num ¡÷¡E + value  { + - <= < > >= == != && || / * }
+pos-num ¡÷¡E value  { + - <= < > >= == != && || / * }
+value ¡÷¡E INT_NUM  { * / || && != == >= > < <= - + }
+value ¡÷¡E FLOAT_NUM  { * / || && != == >= > < <= - + }
+num ¡÷¡E neg-num  { * / || && != == >= > < <= - + }
+neg-num ¡÷¡E - value  { + - <= < > >= == != && || / * }
+simple-expression ¡÷¡E additive-expression  { ) }
+
+State 73
+selection-stmt ¡÷ if ( expression¡E ) statement  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+selection-stmt ¡÷ if ( expression¡E ) statement else statement  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+
+State 74
+selection-stmt ¡÷ if ( expression )¡E statement  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+selection-stmt ¡÷ if ( expression )¡E statement else statement  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+statement ¡÷¡E expression-stmt  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+expression-stmt ¡÷¡E expression ;  { } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; else }
+expression ¡÷¡E id-assign = expression  { ; }
+id-assign ¡÷¡E ID  { ; * / || && != == >= > < <= - + = }
+expression ¡÷¡E simple-expression  { ; }
+simple-expression ¡÷¡E additive-expression relop additive-expression  { ; }
+additive-expression ¡÷¡E additive-expression addop term  { ; + - <= < > >= == != && || }
+additive-expression ¡÷¡E term  { ; + - <= < > >= == != && || }
+term ¡÷¡E term mulop factor  { ; * / || && != == >= > < <= - + }
+term ¡÷¡E factor  { ; * / || && != == >= > < <= - + }
+factor ¡÷¡E ( expression )  { ; + - <= < > >= == != && || / * }
+factor ¡÷¡E id-assign  { ; + - <= < > >= == != && || / * }
+factor ¡÷¡E call  { ; + - <= < > >= == != && || / * }
+call ¡÷¡E ID ( args )  { ; * / || && != == >= > < <= - + }
+factor ¡÷¡E num  { ; + - <= < > >= == != && || / * }
+num ¡÷¡E pos-num  { ; * / || && != == >= > < <= - + }
+pos-num ¡÷¡E + value  { ; + - <= < > >= == != && || / * }
+pos-num ¡÷¡E value  { ; + - <= < > >= == != && || / * }
+value ¡÷¡E INT_NUM  { ; * / || && != == >= > < <= - + }
+value ¡÷¡E FLOAT_NUM  { ; * / || && != == >= > < <= - + }
+num ¡÷¡E neg-num  { ; * / || && != == >= > < <= - + }
+neg-num ¡÷¡E - value  { ; + - <= < > >= == != && || / * }
+simple-expression ¡÷¡E additive-expression  { ; }
+expression-stmt ¡÷¡E ;  { } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; else }
+statement ¡÷¡E compound-stmt  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+compound-stmt ¡÷¡E { local-declarations statement-list }  { } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; else }
+statement ¡÷¡E selection-stmt  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+selection-stmt ¡÷¡E if ( expression ) statement  { } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; else }
+statement ¡÷¡E iteration-stmt  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+iteration-stmt ¡÷¡E while-statement  { } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; else }
+while-statement ¡÷¡E while ( expression ) statement  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+iteration-stmt ¡÷¡E for-statement  { } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; else }
+for-statement ¡÷¡E for ( expression ; expression ; expression ) statement  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+statement ¡÷¡E jump-stmt  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+jump-stmt ¡÷¡E return ;  { } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; else }
+jump-stmt ¡÷¡E return expression ;  { } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; else }
+jump-stmt ¡÷¡E break ;  { } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; else }
+
+State 75
+selection-stmt ¡÷ if ( expression ) statement¡E  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+selection-stmt ¡÷ if ( expression ) statement¡E else statement  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+
+State 76
+selection-stmt ¡÷ if ( expression ) statement else¡E statement  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+statement ¡÷¡E expression-stmt  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+expression-stmt ¡÷¡E expression ;  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+expression ¡÷¡E id-assign = expression  { ; }
+id-assign ¡÷¡E ID  { ; * / || && != == >= > < <= - + = }
+expression ¡÷¡E simple-expression  { ; }
+simple-expression ¡÷¡E additive-expression relop additive-expression  { ; }
+additive-expression ¡÷¡E additive-expression addop term  { ; + - <= < > >= == != && || }
+additive-expression ¡÷¡E term  { ; + - <= < > >= == != && || }
+term ¡÷¡E term mulop factor  { ; * / || && != == >= > < <= - + }
+term ¡÷¡E factor  { ; * / || && != == >= > < <= - + }
+factor ¡÷¡E ( expression )  { ; + - <= < > >= == != && || / * }
+factor ¡÷¡E id-assign  { ; + - <= < > >= == != && || / * }
+factor ¡÷¡E call  { ; + - <= < > >= == != && || / * }
+call ¡÷¡E ID ( args )  { ; * / || && != == >= > < <= - + }
+factor ¡÷¡E num  { ; + - <= < > >= == != && || / * }
+num ¡÷¡E pos-num  { ; * / || && != == >= > < <= - + }
+pos-num ¡÷¡E + value  { ; + - <= < > >= == != && || / * }
+pos-num ¡÷¡E value  { ; + - <= < > >= == != && || / * }
+value ¡÷¡E INT_NUM  { ; * / || && != == >= > < <= - + }
+value ¡÷¡E FLOAT_NUM  { ; * / || && != == >= > < <= - + }
+num ¡÷¡E neg-num  { ; * / || && != == >= > < <= - + }
+neg-num ¡÷¡E - value  { ; + - <= < > >= == != && || / * }
+simple-expression ¡÷¡E additive-expression  { ; }
+expression-stmt ¡÷¡E ;  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+statement ¡÷¡E compound-stmt  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+compound-stmt ¡÷¡E { local-declarations statement-list }  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+statement ¡÷¡E selection-stmt  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+selection-stmt ¡÷¡E if ( expression ) statement  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+selection-stmt ¡÷¡E if ( expression ) statement else statement  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+statement ¡÷¡E iteration-stmt  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+iteration-stmt ¡÷¡E while-statement  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+while-statement ¡÷¡E while ( expression ) statement  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+iteration-stmt ¡÷¡E for-statement  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+for-statement ¡÷¡E for ( expression ; expression ; expression ) statement  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+statement ¡÷¡E jump-stmt  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+jump-stmt ¡÷¡E return ;  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+jump-stmt ¡÷¡E return expression ;  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+jump-stmt ¡÷¡E break ;  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+
+State 77
+selection-stmt ¡÷ if ( expression ) statement else statement¡E  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+
+State 78
+statement ¡÷ iteration-stmt¡E  { else FLOAT_NUM INT_NUM - + ( ID for while break return if { ; } }
+
+State 79
+iteration-stmt ¡÷ while-statement¡E  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+
+State 80
+while-statement ¡÷ while¡E ( expression ) statement  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+
+State 81
+while-statement ¡÷ while (¡E expression ) statement  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+expression ¡÷¡E id-assign = expression  { ) }
+id-assign ¡÷¡E ID  { * / || && != == >= > < <= - + = }
+expression ¡÷¡E simple-expression  { ) }
+simple-expression ¡÷¡E additive-expression relop additive-expression  { ) }
+additive-expression ¡÷¡E additive-expression addop term  { + - <= < > >= == != && || }
+additive-expression ¡÷¡E term  { + - <= < > >= == != && || }
+term ¡÷¡E term mulop factor  { * / || && != == >= > < <= - + }
+term ¡÷¡E factor  { * / || && != == >= > < <= - + }
+factor ¡÷¡E ( expression )  { + - <= < > >= == != && || / * }
+factor ¡÷¡E id-assign  { + - <= < > >= == != && || / * }
+factor ¡÷¡E call  { + - <= < > >= == != && || / * }
+call ¡÷¡E ID ( args )  { * / || && != == >= > < <= - + }
+factor ¡÷¡E num  { + - <= < > >= == != && || / * }
+num ¡÷¡E pos-num  { * / || && != == >= > < <= - + }
+pos-num ¡÷¡E + value  { + - <= < > >= == != && || / * }
+pos-num ¡÷¡E value  { + - <= < > >= == != && || / * }
+value ¡÷¡E INT_NUM  { * / || && != == >= > < <= - + }
+value ¡÷¡E FLOAT_NUM  { * / || && != == >= > < <= - + }
+num ¡÷¡E neg-num  { * / || && != == >= > < <= - + }
+neg-num ¡÷¡E - value  { + - <= < > >= == != && || / * }
+simple-expression ¡÷¡E additive-expression  { ) }
+
+State 82
+while-statement ¡÷ while ( expression¡E ) statement  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+
+State 83
+while-statement ¡÷ while ( expression )¡E statement  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+statement ¡÷¡E expression-stmt  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+expression-stmt ¡÷¡E expression ;  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+expression ¡÷¡E id-assign = expression  { ; }
+id-assign ¡÷¡E ID  { ; * / || && != == >= > < <= - + = }
+expression ¡÷¡E simple-expression  { ; }
+simple-expression ¡÷¡E additive-expression relop additive-expression  { ; }
+additive-expression ¡÷¡E additive-expression addop term  { ; + - <= < > >= == != && || }
+additive-expression ¡÷¡E term  { ; + - <= < > >= == != && || }
+term ¡÷¡E term mulop factor  { ; * / || && != == >= > < <= - + }
+term ¡÷¡E factor  { ; * / || && != == >= > < <= - + }
+factor ¡÷¡E ( expression )  { ; + - <= < > >= == != && || / * }
+factor ¡÷¡E id-assign  { ; + - <= < > >= == != && || / * }
+factor ¡÷¡E call  { ; + - <= < > >= == != && || / * }
+call ¡÷¡E ID ( args )  { ; * / || && != == >= > < <= - + }
+factor ¡÷¡E num  { ; + - <= < > >= == != && || / * }
+num ¡÷¡E pos-num  { ; * / || && != == >= > < <= - + }
+pos-num ¡÷¡E + value  { ; + - <= < > >= == != && || / * }
+pos-num ¡÷¡E value  { ; + - <= < > >= == != && || / * }
+value ¡÷¡E INT_NUM  { ; * / || && != == >= > < <= - + }
+value ¡÷¡E FLOAT_NUM  { ; * / || && != == >= > < <= - + }
+num ¡÷¡E neg-num  { ; * / || && != == >= > < <= - + }
+neg-num ¡÷¡E - value  { ; + - <= < > >= == != && || / * }
+simple-expression ¡÷¡E additive-expression  { ; }
+expression-stmt ¡÷¡E ;  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+statement ¡÷¡E compound-stmt  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+compound-stmt ¡÷¡E { local-declarations statement-list }  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+statement ¡÷¡E selection-stmt  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+selection-stmt ¡÷¡E if ( expression ) statement  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+selection-stmt ¡÷¡E if ( expression ) statement else statement  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+statement ¡÷¡E iteration-stmt  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+iteration-stmt ¡÷¡E while-statement  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+while-statement ¡÷¡E while ( expression ) statement  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+iteration-stmt ¡÷¡E for-statement  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+for-statement ¡÷¡E for ( expression ; expression ; expression ) statement  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+statement ¡÷¡E jump-stmt  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+jump-stmt ¡÷¡E return ;  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+jump-stmt ¡÷¡E return expression ;  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+jump-stmt ¡÷¡E break ;  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+
+State 84
+while-statement ¡÷ while ( expression ) statement¡E  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+
+State 85
+iteration-stmt ¡÷ for-statement¡E  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+
+State 86
+for-statement ¡÷ for¡E ( expression ; expression ; expression ) statement  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+
+State 87
+for-statement ¡÷ for (¡E expression ; expression ; expression ) statement  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+expression ¡÷¡E id-assign = expression  { ; }
+id-assign ¡÷¡E ID  { * / || && != == >= > < <= - + = }
+expression ¡÷¡E simple-expression  { ; }
+simple-expression ¡÷¡E additive-expression relop additive-expression  { ; }
+additive-expression ¡÷¡E additive-expression addop term  { + - <= < > >= == != && || }
+additive-expression ¡÷¡E term  { + - <= < > >= == != && || }
+term ¡÷¡E term mulop factor  { * / || && != == >= > < <= - + }
+term ¡÷¡E factor  { * / || && != == >= > < <= - + }
+factor ¡÷¡E ( expression )  { + - <= < > >= == != && || / * }
+factor ¡÷¡E id-assign  { + - <= < > >= == != && || / * }
+factor ¡÷¡E call  { + - <= < > >= == != && || / * }
+call ¡÷¡E ID ( args )  { * / || && != == >= > < <= - + }
+factor ¡÷¡E num  { + - <= < > >= == != && || / * }
+num ¡÷¡E pos-num  { * / || && != == >= > < <= - + }
+pos-num ¡÷¡E + value  { + - <= < > >= == != && || / * }
+pos-num ¡÷¡E value  { + - <= < > >= == != && || / * }
+value ¡÷¡E INT_NUM  { * / || && != == >= > < <= - + }
+value ¡÷¡E FLOAT_NUM  { * / || && != == >= > < <= - + }
+num ¡÷¡E neg-num  { * / || && != == >= > < <= - + }
+neg-num ¡÷¡E - value  { + - <= < > >= == != && || / * }
+simple-expression ¡÷¡E additive-expression  { ; }
+
+State 88
+for-statement ¡÷ for ( expression¡E ; expression ; expression ) statement  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+
+State 89
+for-statement ¡÷ for ( expression ;¡E expression ; expression ) statement  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+expression ¡÷¡E id-assign = expression  { ; }
+id-assign ¡÷¡E ID  { * / || && != == >= > < <= - + = }
+expression ¡÷¡E simple-expression  { ; }
+simple-expression ¡÷¡E additive-expression relop additive-expression  { ; }
+additive-expression ¡÷¡E additive-expression addop term  { + - <= < > >= == != && || }
+additive-expression ¡÷¡E term  { + - <= < > >= == != && || }
+term ¡÷¡E term mulop factor  { * / || && != == >= > < <= - + }
+term ¡÷¡E factor  { * / || && != == >= > < <= - + }
+factor ¡÷¡E ( expression )  { + - <= < > >= == != && || / * }
+factor ¡÷¡E id-assign  { + - <= < > >= == != && || / * }
+factor ¡÷¡E call  { + - <= < > >= == != && || / * }
+call ¡÷¡E ID ( args )  { * / || && != == >= > < <= - + }
+factor ¡÷¡E num  { + - <= < > >= == != && || / * }
+num ¡÷¡E pos-num  { * / || && != == >= > < <= - + }
+pos-num ¡÷¡E + value  { + - <= < > >= == != && || / * }
+pos-num ¡÷¡E value  { + - <= < > >= == != && || / * }
+value ¡÷¡E INT_NUM  { * / || && != == >= > < <= - + }
+value ¡÷¡E FLOAT_NUM  { * / || && != == >= > < <= - + }
+num ¡÷¡E neg-num  { * / || && != == >= > < <= - + }
+neg-num ¡÷¡E - value  { + - <= < > >= == != && || / * }
+simple-expression ¡÷¡E additive-expression  { ; }
+
+State 90
+for-statement ¡÷ for ( expression ; expression¡E ; expression ) statement  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+
+State 91
+for-statement ¡÷ for ( expression ; expression ;¡E expression ) statement  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+expression ¡÷¡E id-assign = expression  { ) }
+id-assign ¡÷¡E ID  { * / || && != == >= > < <= - + = }
+expression ¡÷¡E simple-expression  { ) }
+simple-expression ¡÷¡E additive-expression relop additive-expression  { ) }
+additive-expression ¡÷¡E additive-expression addop term  { + - <= < > >= == != && || }
+additive-expression ¡÷¡E term  { + - <= < > >= == != && || }
+term ¡÷¡E term mulop factor  { * / || && != == >= > < <= - + }
+term ¡÷¡E factor  { * / || && != == >= > < <= - + }
+factor ¡÷¡E ( expression )  { + - <= < > >= == != && || / * }
+factor ¡÷¡E id-assign  { + - <= < > >= == != && || / * }
+factor ¡÷¡E call  { + - <= < > >= == != && || / * }
+call ¡÷¡E ID ( args )  { * / || && != == >= > < <= - + }
+factor ¡÷¡E num  { + - <= < > >= == != && || / * }
+num ¡÷¡E pos-num  { * / || && != == >= > < <= - + }
+pos-num ¡÷¡E + value  { + - <= < > >= == != && || / * }
+pos-num ¡÷¡E value  { + - <= < > >= == != && || / * }
+value ¡÷¡E INT_NUM  { * / || && != == >= > < <= - + }
+value ¡÷¡E FLOAT_NUM  { * / || && != == >= > < <= - + }
+num ¡÷¡E neg-num  { * / || && != == >= > < <= - + }
+neg-num ¡÷¡E - value  { + - <= < > >= == != && || / * }
+simple-expression ¡÷¡E additive-expression  { ) }
+
+State 92
+for-statement ¡÷ for ( expression ; expression ; expression¡E ) statement  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+
+State 93
+for-statement ¡÷ for ( expression ; expression ; expression )¡E statement  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+statement ¡÷¡E expression-stmt  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+expression-stmt ¡÷¡E expression ;  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+expression ¡÷¡E id-assign = expression  { ; }
+id-assign ¡÷¡E ID  { ; * / || && != == >= > < <= - + = }
+expression ¡÷¡E simple-expression  { ; }
+simple-expression ¡÷¡E additive-expression relop additive-expression  { ; }
+additive-expression ¡÷¡E additive-expression addop term  { ; + - <= < > >= == != && || }
+additive-expression ¡÷¡E term  { ; + - <= < > >= == != && || }
+term ¡÷¡E term mulop factor  { ; * / || && != == >= > < <= - + }
+term ¡÷¡E factor  { ; * / || && != == >= > < <= - + }
+factor ¡÷¡E ( expression )  { ; + - <= < > >= == != && || / * }
+factor ¡÷¡E id-assign  { ; + - <= < > >= == != && || / * }
+factor ¡÷¡E call  { ; + - <= < > >= == != && || / * }
+call ¡÷¡E ID ( args )  { ; * / || && != == >= > < <= - + }
+factor ¡÷¡E num  { ; + - <= < > >= == != && || / * }
+num ¡÷¡E pos-num  { ; * / || && != == >= > < <= - + }
+pos-num ¡÷¡E + value  { ; + - <= < > >= == != && || / * }
+pos-num ¡÷¡E value  { ; + - <= < > >= == != && || / * }
+value ¡÷¡E INT_NUM  { ; * / || && != == >= > < <= - + }
+value ¡÷¡E FLOAT_NUM  { ; * / || && != == >= > < <= - + }
+num ¡÷¡E neg-num  { ; * / || && != == >= > < <= - + }
+neg-num ¡÷¡E - value  { ; + - <= < > >= == != && || / * }
+simple-expression ¡÷¡E additive-expression  { ; }
+expression-stmt ¡÷¡E ;  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+statement ¡÷¡E compound-stmt  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+compound-stmt ¡÷¡E { local-declarations statement-list }  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+statement ¡÷¡E selection-stmt  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+selection-stmt ¡÷¡E if ( expression ) statement  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+selection-stmt ¡÷¡E if ( expression ) statement else statement  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+statement ¡÷¡E iteration-stmt  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+iteration-stmt ¡÷¡E while-statement  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+while-statement ¡÷¡E while ( expression ) statement  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+iteration-stmt ¡÷¡E for-statement  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+for-statement ¡÷¡E for ( expression ; expression ; expression ) statement  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+statement ¡÷¡E jump-stmt  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+jump-stmt ¡÷¡E return ;  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+jump-stmt ¡÷¡E return expression ;  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+jump-stmt ¡÷¡E break ;  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+
+State 94
+for-statement ¡÷ for ( expression ; expression ; expression ) statement¡E  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+
+State 95
+statement ¡÷ jump-stmt¡E  { else FLOAT_NUM INT_NUM - + ( ID for while break return if { ; } }
+
+State 96
+jump-stmt ¡÷ return¡E ;  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+jump-stmt ¡÷ return¡E expression ;  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+expression ¡÷¡E id-assign = expression  { ; }
+id-assign ¡÷¡E ID  { * / || && != == >= > < <= - + = }
+expression ¡÷¡E simple-expression  { ; }
+simple-expression ¡÷¡E additive-expression relop additive-expression  { ; }
+additive-expression ¡÷¡E additive-expression addop term  { + - <= < > >= == != && || }
+additive-expression ¡÷¡E term  { + - <= < > >= == != && || }
+term ¡÷¡E term mulop factor  { * / || && != == >= > < <= - + }
+term ¡÷¡E factor  { * / || && != == >= > < <= - + }
+factor ¡÷¡E ( expression )  { + - <= < > >= == != && || / * }
+factor ¡÷¡E id-assign  { + - <= < > >= == != && || / * }
+factor ¡÷¡E call  { + - <= < > >= == != && || / * }
+call ¡÷¡E ID ( args )  { * / || && != == >= > < <= - + }
+factor ¡÷¡E num  { + - <= < > >= == != && || / * }
+num ¡÷¡E pos-num  { * / || && != == >= > < <= - + }
+pos-num ¡÷¡E + value  { + - <= < > >= == != && || / * }
+pos-num ¡÷¡E value  { + - <= < > >= == != && || / * }
+value ¡÷¡E INT_NUM  { * / || && != == >= > < <= - + }
+value ¡÷¡E FLOAT_NUM  { * / || && != == >= > < <= - + }
+num ¡÷¡E neg-num  { * / || && != == >= > < <= - + }
+neg-num ¡÷¡E - value  { + - <= < > >= == != && || / * }
+simple-expression ¡÷¡E additive-expression  { ; }
+
+State 97
+jump-stmt ¡÷ return ;¡E  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+
+State 98
+jump-stmt ¡÷ return expression¡E ;  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+
+State 99
+jump-stmt ¡÷ return expression ;¡E  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+
+State 100
+jump-stmt ¡÷ break¡E ;  { else ; { if return break while for ID ( + - INT_NUM FLOAT_NUM } }
+
+State 101
+jump-stmt ¡÷ break ;¡E  { else } FLOAT_NUM INT_NUM - + ( ID for while break return if { ; }
+
+State 102
+local-declarations ¡÷ local-declarations var-declaration¡E  { int void float } ; { if return break while for ID ( + - INT_NUM FLOAT_NUM }
+
+State 103
+type-specifier ¡÷ int¡E  { ID }
+
+State 104
+type-specifier ¡÷ void¡E  { ID }
+
+State 105
+type-specifier ¡÷ float¡E  { ID }
+
+State 106
+params ¡÷ param-list¡E  { ) }
+param-list ¡÷ param-list¡E , param  { , ) }
+
+State 107
+param-list ¡÷ param-list ,¡E param  { , ) }
+param ¡÷¡E type-specifier ID  { , ) }
+type-specifier ¡÷¡E int  { ID }
+type-specifier ¡÷¡E void  { ID }
+type-specifier ¡÷¡E float  { ID }
+
+State 108
+param-list ¡÷ param-list , param¡E  { , ) }
+
+State 109
+param ¡÷ type-specifier¡E ID  { , ) }
+
+State 110
+param ¡÷ type-specifier ID¡E  { , ) }
+
+State 111
+param-list ¡÷ param¡E  { , ) }
+
+State 112
+type-specifier ¡÷ void¡E  { ID }
+params ¡÷ void¡E  { ) }
+
+State 113
+declaration ¡÷ fun-declaration¡E  { float void int $ }
+
+State 114
+declaration-list ¡÷ declaration¡E  { float void int $ }
+
