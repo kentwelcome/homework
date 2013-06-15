@@ -177,7 +177,6 @@ int main( int argc , char *argv[] )
     if ( input == NULL )
     {
         printf("input file error!\n");
-        system("pause");
         return 0;     
     }
     
@@ -342,7 +341,6 @@ int main( int argc , char *argv[] )
     free_state(&state_start);
     //free_config(&config_start);
     
-    system("pause");
 }
 
 int insert_grammar( int rule , char *lhs , char *rhs )
