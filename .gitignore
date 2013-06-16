@@ -1,5 +1,5 @@
 
-Compiler/hw2/out.txt
+Compiler/hw1/out.txt
 
 Compiler/hw2/out.txt
 
@@ -14,3 +14,5 @@ Compiler/hw2/parser
 Compiler/hw2/scanner
 
 Compiler/hw3/parser
+
+Compiler/bin/
