@@ -1,4 +1,5 @@
 Computer Graphics 
 =========
 
-2011 implement by opengl
+2008 Spring: implement by C
+2011 Spring: implement by opengl

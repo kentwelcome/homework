@@ -1,23 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#define             TRUE       1
-#define             FAULT      0
-
-//struct
+#include "scanner.h"
 
 //variable
 FILE    *input_file , *output_file;
 int     COMMENT_MARK = FAULT;
-char	*Reserved_word[] = { "void" , "int" , "float" , "if" , "else" , "while" , "for" , "return" ,"break" };
+char	*Reserved_word[] = RESERVED_WORDS;
 
-//Sub function
 
-int Find_Comments(char **string );  // fine /*  ...  */
-int Find_Comments2(char **string ); // fine //
-int Check_Reserved_Word(char *string );
-char *strupr( char *s );
+void usageDisplay(char *projectName)
+{
+    printf("Usage: %s [Source File]\n",projectName);
+}
 
 //Main function
 int main( int argc , char *argv[])
